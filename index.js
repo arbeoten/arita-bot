@@ -9,6 +9,11 @@ const client = new Client({
   ],
 });
 
+const messageCreate = require("./src/messageCreate.js");
+
+// client.on + messageCreate -> 유저가 메시지를 보낼때 감지해서 callback 실행
+client.on("messageCreate", (message) => messageCreate.execute(message, client));
+
 client.once("ready", () => {
   console.log(`✅ 로그인 성공! 봇 이름: ${client.user.tag}`);
 });
